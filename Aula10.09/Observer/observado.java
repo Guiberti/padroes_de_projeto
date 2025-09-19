@@ -29,6 +29,5 @@ public class observado {
     public void remover(absObservador observador) {
         this.observadores.remove(observador);
     }
-
-
 }
+ 
