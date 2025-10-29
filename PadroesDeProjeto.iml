@@ -12,6 +12,8 @@
       <sourceFolder url="file://$MODULE_DIR$/AvaliacaoPrimeiroBimestre" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Aula15.10" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Aula22.10" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/AtvAdapter" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/AtvStrategy" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
