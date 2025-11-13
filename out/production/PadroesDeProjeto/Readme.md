@@ -1,30 +1,46 @@
-# Padrão Adapter — Integração de APIs de Mídia Social
+# Sistema de Batalha RPG — Padrão Strategy
+
+Este projeto foi desenvolvido como atividade da disciplina **Padrões de Projeto**, com o objetivo de aplicar o **padrão Strategy** em um sistema de combate de RPG medieval.
+
+---
 
 ## Objetivo
-Demonstrar a aplicação do **padrão de projeto Adapter** por meio da implementação de um sistema simples e unificado para publicar conteúdo em múltiplas redes sociais (Twitter, Instagram, LinkedIn e TikTok).
-O foco deste exercício é adaptar diferentes APIs (simuladas) para uma **interface comum**, facilitando a integração e o reuso de código.
----
 
-## Descrição do código
-O projeto contém:
-
-- **APIs simuladas** (`adapter.model.*`): representam as interfaces nativas de cada rede social, com métodos distintos (por exemplo `tweet`, `post`, `share`, `uploadVideo`).
-- **Interface unificada** (`adapter.adapter.SocialMediaAdapter`): define o método genérico `publish(String message)` que todos os adapters implementam.
-- **Adapters concretos** (`adapter.adapter.*Adapter`): cada adaptador traduz a chamada genérica `publish` para o método específico da API simulada correspondente.
-- **Gerenciador** (`adapter.service.SocialMediaManager`): classe que recebe um `SocialMediaAdapter` e o usa para compartilhar mensagens (`share(String message)`).
-- **Classe de execução** (`Main.java`): demonstra o uso dos adapters e do gerenciador.
+Demonstrar o uso do **padrão Strategy** para permitir que diferentes personagens possam **equipar e utilizar armas variadas**, cada uma com **efeitos especiais únicos**, sem modificar o código principal das classes de personagem.
 
 ---
 
-## Observações de implementação
-- As APIs estão **simuladas** (apenas `System.out.println`) para atender ao escopo acadêmico e facilitar testes sem dependências externas.
-- A **Factory/Strategy** mencionada no enunciado **não** foi implementada, conforme instrução. Há espaço no projeto para incluir uma `SocialMediaFactory` mais tarde, que instancie adapters com base em configuração (arquivo `.properties`, variáveis de ambiente ou perfil).
-- O projeto foi projetado para ser **extensível**: adicionar uma nova rede social exige apenas criar a API simulada e o Adapter correspondente que implemente `SocialMediaAdapter`.
+## Funcionalidades
+
+- **Troca dinâmica de armas** durante a batalha (implementação do Strategy).
+- **Armas com efeitos especiais**, como sangramento, queimadura e atordoamento.
+- **Sistema de batalha** com turnos e lógica básica de vitória.
+- **Três classes principais de personagens**: Guerreiro, Arqueiro e Mago.
+- Suporte a **novas armas e efeitos**, sem alterar o código base.
+- Arquitetura extensível e organizada por pacotes.
+---
+
+## Padrão de Projeto: Strategy
+
+O padrão **Strategy** permite definir uma família de algoritmos (neste caso, **armas**) e torná-los intercambiáveis.  
+Assim, cada personagem pode trocar de arma durante a execução sem precisar alterar sua implementação.
+
+Exemplo simplificado:
+
+```java
+Personagem guerreiro = new Guerreiro("Thorin");
+guerreiro.trocarArma(new EspadaLonga());
+guerreiro.atacar(new Mago("Merlin"));
+```
 
 ---
 
-## Benefícios do padrão Adapter (no código)
-- **Desacoplamento** entre o sistema e as APIs externas.
-- **Uniformidade** de uso: o gerenciador usa uma única interface (`publish`) para todas as redes.
-- **Facilidade de manutenção**: mudanças na API de uma rede afetam apenas o seu Adapter.
-- **Extensibilidade**: adicionar novas plataformas é simples e seguro.
+## Efeitos Especiais
+
+| Arma | Dano Base | Efeito | Custo de Mana | Requisito |
+|------|------------|---------|----------------|------------|
+| Espada Longa | 15 | Corte Profundo (sangramento) | 0 | Força ≥ 10 |
+| Arco Élfico | 12 | Chuva de Flechas (ataque em área) | 15 | Destreza ≥ 8 |
+| Cajado Arcano | 8 | Bola de Fogo (queimadura) | 25 | Inteligência ≥ 12 |
+| Machado de Guerra | 18 | Golpe Esmagador (atordoar) | 5 | Força ≥ 15 |
+| Adaga Sombria | 10 | Ataque Furtivo (dano triplo desprevenido) | 10 | Destreza ≥ 12 |
