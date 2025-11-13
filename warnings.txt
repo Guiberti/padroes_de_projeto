@@ -1,0 +1,1 @@
+[2025-11-12T22:38:02.682374500] [WARNING] O disco C: está com 90% de ocupação.
